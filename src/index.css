@@ -13,13 +13,48 @@ code {
     monospace;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #999;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #333;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #999;
+}
+
+li a:visited {
+  background-color: #999;
+}
+
 nav {
   padding: 10px;
+  text-decoration: none;
 }
 
 nav li {
-  display: inline;
+  display: flex;
   padding: 8px;
   list-style-type: none;
   margin: 0;
+}
+
+
+
+nav li:nth-last-child(1) {
+  float: right;
 }
