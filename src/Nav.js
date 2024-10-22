@@ -3,7 +3,7 @@ function Nav() {
     return (
         <nav>
             <ul>
-                <img src="/Logo.svg" alt="Logo" />
+                <li><img src="/Logo.svg" alt="Logo" /></li>
                 <li><a href="/home" role="button">Homepage</a></li>
                 <li><a href="/about" role="button">About Us</a></li>
                 <li><a href="/menu" role="button">Menu</a></li>
