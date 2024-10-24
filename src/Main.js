@@ -3,8 +3,9 @@ import { useState, useReducer } from "react";
 import HomePage from "./Homepage";
 import BookingPage from "./BookingPage";
 import BookingForm from "./BookingForm";
-import { Routes, Route } from "react-router-dom";
-import { fetchAPI } from "./api";
+import ConfirmedBooking from "./ConfirmedBooking";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { fetchAPI, submitAPI } from "./api";
 
 export const updateTimes = (state, action) => {
     // Logic to update times based on selected date will go here
@@ -30,6 +31,13 @@ function Main() {
         initializeTimes()
     );
 
+    const navigate = useNavigate();
+
+    const submitForm = async (formData) => {
+        submitAPI(formData);
+        navigate("/confirmed");
+    };
+
     return (
         <main>
             <h1>Main</h1>
@@ -50,8 +58,11 @@ function Main() {
                         guests={guests}
                         occasion={occasion}
                         dispatch={dispatch}
+                        submitForm={submitForm}
                     />
                     }></Route>
+                <Route path="/confirmed" element={<ConfirmedBooking />} />
+
             </Routes>
         </main>
     );

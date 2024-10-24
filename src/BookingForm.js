@@ -1,4 +1,3 @@
-import { submitAPI } from "./api";
 
 function BookingForm({
   availableTimes,
@@ -10,17 +9,19 @@ function BookingForm({
   bookingTime,
   guests,
   occasion,
-  dispatch, // Receive dispatch from BookingPage
+  dispatch,
+  submitForm
 }) {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(bookingDate, bookingTime, guests, occasion);
-    submitAPI({
-      date: bookingDate,
-      time: bookingTime,
-      guests: guests,
-      occasion: occasion,
-    });
+    const formData = {
+      bookingDate,
+      bookingTime,
+      guests,
+      occasion,
+    };
+    await submitForm(formData);
   };
 
   return (
