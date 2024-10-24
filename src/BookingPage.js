@@ -1,4 +1,4 @@
-function BookingPage({ BookingForm, availableTimes, setBookingDate, setBookingTime, setGuests, setOccasion, bookingDate, bookingTime, guests, occasion }) {
+function BookingPage({ BookingForm, availableTimes, setBookingDate, setBookingTime, setGuests, setOccasion, bookingDate, bookingTime, guests, occasion, dispatch }) {
 
 
     return (
@@ -13,7 +13,9 @@ function BookingPage({ BookingForm, availableTimes, setBookingDate, setBookingTi
                 bookingDate={bookingDate}
                 bookingTime={bookingTime}
                 guests={guests}
-                occasion={occasion} />
+                occasion={occasion}
+                dispatch={dispatch}
+                 />
         </>
     );
 }

@@ -4,26 +4,22 @@ import HomePage from "./Homepage";
 import BookingPage from "./BookingPage";
 import BookingForm from "./BookingForm";
 import { Routes, Route } from "react-router-dom";
+import { fetchAPI } from "./api";
 
 export const updateTimes = (state, action) => {
     // Logic to update times based on selected date will go here
     // For now, return the same available times
-    return initializeTimes();
+    const proposedTimes = fetchAPI(action.payload);
+    return proposedTimes;
 };
 
 export const initializeTimes = () => {
-    return [
-        "17:00",
-        "18:00",
-        "19:00",
-        "20:00",
-        "21:00",
-        "22:00",
-    ];
+    const todaysDate = new Date();
+    const proposedTimes = fetchAPI(todaysDate);
+    return proposedTimes;
 };
 
 function Main() {
-
     const [bookingDate, setBookingDate] = useState(new Date());
     const [bookingTime, setBookingTime] = useState("");
     const [guests, setGuests] = useState(1);

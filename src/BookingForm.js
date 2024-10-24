@@ -1,3 +1,5 @@
+import { submitAPI } from "./api";
+
 function BookingForm({
   availableTimes,
   setBookingDate,
@@ -13,6 +15,12 @@ function BookingForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(bookingDate, bookingTime, guests, occasion);
+    submitAPI({
+      date: bookingDate,
+      time: bookingTime,
+      guests: guests,
+      occasion: occasion,
+    });
   };
 
   return (
