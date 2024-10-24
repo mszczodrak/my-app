@@ -12,11 +12,9 @@ test('Test initializeTimes function', () => {
   const initializeTimesValues = initializeTimes();
   expect(initializeTimesValues).toEqual([
     "17:00",
-    "18:00",
-    "19:00",
+    "18:30",
     "20:00",
-    "21:00",
-    "22:00",
+    "21:30",
   ]);
 });
 
@@ -24,10 +22,8 @@ test('Test updateTimes function', () => {
   const updateTimesValues = updateTimes();
   expect(updateTimesValues).toEqual([
     "17:00",
-    "18:00",
-    "19:00",
+    "18:30",
     "20:00",
-    "21:00",
-    "22:00",
+    "21:30",
   ]);
 });

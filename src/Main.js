@@ -10,7 +10,7 @@ import { fetchAPI, submitAPI } from "./api";
 export const updateTimes = (state, action) => {
     // Logic to update times based on selected date will go here
     // For now, return the same available times
-    const proposedTimes = fetchAPI(action.payload);
+    const proposedTimes = fetchAPI(action?.payload);
     return proposedTimes;
 };
 
