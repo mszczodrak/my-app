@@ -1,63 +1,75 @@
-function BookingForm({availableTimes,
-    setBookingDate, setBookingTime, setGuests, setOccasion,
-    bookingDate, bookingTime, guests, occasion }) {
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(bookingDate, bookingTime, guests, occasion);
-    }
+function BookingForm({
+  availableTimes,
+  setBookingDate,
+  setBookingTime,
+  setGuests,
+  setOccasion,
+  bookingDate,
+  bookingTime,
+  guests,
+  occasion,
+  dispatch, // Receive dispatch from BookingPage
+}) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(bookingDate, bookingTime, guests, occasion);
+  };
 
-    return (
-        <>
-            <h1>Booking</h1>
+  return (
+    <>
+      <h1>Booking</h1>
 
-            <form
-                onSubmit={handleSubmit}
-                style={{ display: 'grid', 'max-width': '200px', gap: '20px' }}
-            >
-                <label for="res-date">Choose date</label>
-                <input
-                    type="date"
-                    id="res-date"
-                    value={bookingDate}
-                    onChange={(e) => setBookingDate(e.target.value)}
-                />
-                <label for="res-time">Choose time</label>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "grid", "max-width": "200px", gap: "20px" }}
+      >
+        <label htmlFor="res-date">Choose date</label>
+        <input
+          type="date"
+          id="res-date"
+          value={bookingDate}
+          onChange={(e) => {
+            setBookingDate(e.target.value);
+            dispatch({ type: "UPDATE_TIMES", payload: e.target.value }); // Dispatch action on date change
+          }}
+        />
+        <label htmlFor="res-time">Choose time</label>
 
-                <select
-                    id="res-time "
-                    value={bookingTime}
-                    onChange={(e) => setBookingTime(e.target.value)}
-                >
-                    {
-                        availableTimes?.map((time) => (
-                            <option key={time}>{time}</option>
-                        ))
-                    }
+        <select
+          id="res-time "
+          value={bookingTime}
+          onChange={(e) => setBookingTime(e.target.value)}
+        >
+          {availableTimes?.map((time) => (
+            <option key={time}>{time}</option>
+          ))}
+        </select>
 
-                </select>
-
-                <label for="guests">Number of guests</label>
-                <input
-                    type="number"
-                    placeholder="1"
-                    min="1"
-                    max="10"
-                    id="guests"
-                    value={guests}
-                    onChange={(e) => setGuests(e.target.value)}
-                />
-                <label for="occasion">Occasion</label>
-                <select id="occasion"
-                    value={occasion}
-                    onChange={(e) => setOccasion(e.target.value)}
-                >
-                    <option>Birthday</option>
-                    <option>Anniversary</option>
-                </select>
-                <button type="submit" value="Make Your reservation" />
-            </form>
-        </>
-    );
+        <label htmlFor="guests">Number of guests</label>
+        <input
+          type="number"
+          placeholder="1"
+          min="1"
+          max="10"
+          id="guests"
+          value={guests}
+          onChange={(e) => setGuests(e.target.value)}
+        />
+        <label htmlFor="occasion">Occasion</label>
+        <select
+          id="occasion"
+          value={occasion}
+          onChange={(e) => setOccasion(e.target.value)}
+        >
+          <option>Birthday</option>
+          <option>Anniversary</option>
+        </select>
+        <button type="submit" value="Make Your reservation">
+          Make Your reservation
+        </button>
+      </form>
+    </>
+  );
 }
 
 export default BookingForm;
