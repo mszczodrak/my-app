@@ -5,13 +5,13 @@ import BookingPage from "./BookingPage";
 import BookingForm from "./BookingForm";
 import { Routes, Route } from "react-router-dom";
 
-const updateTimes = (state, action) => {
+export const updateTimes = (state, action) => {
     // Logic to update times based on selected date will go here
     // For now, return the same available times
     return initializeTimes();
 };
 
-const initializeTimes = () => {
+export const initializeTimes = () => {
     return [
         "17:00",
         "18:00",

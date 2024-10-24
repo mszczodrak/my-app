@@ -17,11 +17,11 @@ function BookingForm({
 
   return (
     <>
-      <h1>Booking</h1>
+      <h1>Book Now</h1>
 
       <form
         onSubmit={handleSubmit}
-        style={{ display: "grid", "max-width": "200px", gap: "20px" }}
+        style={{ display: "grid", maxWidth: "200px", gap: "20px" }}
       >
         <label htmlFor="res-date">Choose date</label>
         <input
