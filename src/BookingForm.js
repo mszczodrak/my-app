@@ -44,66 +44,67 @@ function BookingForm({
       <form
         onSubmit={handleSubmit}
         style={{ display: "grid", maxWidth: "200px", gap: "20px" }}
+        aria-label="On Click"
       >
-        <label htmlFor="res-date">Choose date</label>
-        <input
-          type="date"
-          id="res-date"
-          value={bookingDate}
-          onChange={(e) => {
-            setBookingDate(e.target.value);
-            dispatch({ type: "UPDATE_TIMES", payload: e.target.value });
-            handleInputChange(e); // Pass the event object
-          }}
-        />
-        <label htmlFor="res-time">Choose time</label>
+      <label htmlFor="res-date">Choose date</label>
+      <input
+        type="date"
+        id="res-date"
+        value={bookingDate}
+        onChange={(e) => {
+          setBookingDate(e.target.value);
+          dispatch({ type: "UPDATE_TIMES", payload: e.target.value });
+          handleInputChange(e); // Pass the event object
+        }}
+      />
+      <label htmlFor="res-time">Choose time</label>
 
-        <select
-          id="res-time"
-          value={bookingTime}
-          onChange={(e) => {
-            setBookingTime(e.target.value);
-            handleInputChange(e); // Pass the event object
-          }}
-        >
-          {availableTimes?.map((time) => (
-            <option key={time}>{time}</option>
-          ))}
-        </select>
+      <select
+        id="res-time"
+        value={bookingTime}
+        onChange={(e) => {
+          setBookingTime(e.target.value);
+          handleInputChange(e); // Pass the event object
+        }}
+      >
+        {availableTimes?.map((time) => (
+          <option key={time}>{time}</option>
+        ))}
+      </select>
 
-        <label htmlFor="guests">Number of guests</label>
-        <input
-          type="number"
-          placeholder="1"
-          min="1"
-          max="10"
-          id="guests"
-          value={guests}
-          onChange={(e) => {
-            setGuests(e.target.value);
-            handleInputChange(e); // Pass the event object
-          }}
-        />
-        <label htmlFor="occasion">Occasion</label>
-        <select
-          id="occasion"
-          value={occasion}
-          onChange={(e) => {
-            setOccasion(e.target.value);
-            handleInputChange(e); // Pass the event object
-          }}
-        >
-          <option>Birthday</option>
-          <option>Anniversary</option>
-        </select>
-        <button
-          type="submit"
-          value="Make Your reservation"
-          disabled={!isFormValid}
-        >
-          Make Your reservation
-        </button>
-      </form>
+      <label htmlFor="guests">Number of guests</label>
+      <input
+        type="number"
+        placeholder="1"
+        min="1"
+        max="10"
+        id="guests"
+        value={guests}
+        onChange={(e) => {
+          setGuests(e.target.value);
+          handleInputChange(e); // Pass the event object
+        }}
+      />
+      <label htmlFor="occasion">Occasion</label>
+      <select
+        id="occasion"
+        value={occasion}
+        onChange={(e) => {
+          setOccasion(e.target.value);
+          handleInputChange(e); // Pass the event object
+        }}
+      >
+        <option>Birthday</option>
+        <option>Anniversary</option>
+      </select>
+      <button
+        type="submit"
+        value="Make Your reservation"
+        disabled={!isFormValid}
+      >
+        Make Your reservation
+      </button>
+    </form >
     </>
   );
 }
