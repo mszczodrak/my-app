@@ -21,7 +21,7 @@ export const initializeTimes = () => {
 };
 
 function Main() {
-    const [bookingDate, setBookingDate] = useState(new Date());
+    const [bookingDate, setBookingDate] = useState('');
     const [bookingTime, setBookingTime] = useState("");
     const [guests, setGuests] = useState(1);
     const [occasion, setOccasion] = useState("");

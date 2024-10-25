@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 function BookingForm({
   availableTimes,
@@ -10,11 +11,12 @@ function BookingForm({
   guests,
   occasion,
   dispatch,
-  submitForm
+  submitForm,
 }) {
+  const [isFormValid, setIsFormValid] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(bookingDate, bookingTime, guests, occasion);
     const formData = {
       bookingDate,
       bookingTime,
@@ -22,6 +24,17 @@ function BookingForm({
       occasion,
     };
     await submitForm(formData);
+  };
+
+  const handleInputChange = (e) => {
+    // Get the latest values from the event target
+    const updatedDate = e.target.form.elements['res-date'].value;
+    const updatedTime = e.target.form.elements['res-time'].value;
+    const updatedGuests = e.target.form.elements['guests'].value;
+    const updatedOccasion = e.target.form.elements['occasion'].value;
+
+    // Update the isFormValid state based on the latest values
+    setIsFormValid(updatedDate && updatedTime && updatedGuests && updatedOccasion);
   };
 
   return (
@@ -39,15 +52,19 @@ function BookingForm({
           value={bookingDate}
           onChange={(e) => {
             setBookingDate(e.target.value);
-            dispatch({ type: "UPDATE_TIMES", payload: e.target.value }); // Dispatch action on date change
+            dispatch({ type: "UPDATE_TIMES", payload: e.target.value });
+            handleInputChange(e); // Pass the event object
           }}
         />
         <label htmlFor="res-time">Choose time</label>
 
         <select
-          id="res-time "
+          id="res-time"
           value={bookingTime}
-          onChange={(e) => setBookingTime(e.target.value)}
+          onChange={(e) => {
+            setBookingTime(e.target.value);
+            handleInputChange(e); // Pass the event object
+          }}
         >
           {availableTimes?.map((time) => (
             <option key={time}>{time}</option>
@@ -62,18 +79,28 @@ function BookingForm({
           max="10"
           id="guests"
           value={guests}
-          onChange={(e) => setGuests(e.target.value)}
+          onChange={(e) => {
+            setGuests(e.target.value);
+            handleInputChange(e); // Pass the event object
+          }}
         />
         <label htmlFor="occasion">Occasion</label>
         <select
           id="occasion"
           value={occasion}
-          onChange={(e) => setOccasion(e.target.value)}
+          onChange={(e) => {
+            setOccasion(e.target.value);
+            handleInputChange(e); // Pass the event object
+          }}
         >
           <option>Birthday</option>
           <option>Anniversary</option>
         </select>
-        <button type="submit" value="Make Your reservation">
+        <button
+          type="submit"
+          value="Make Your reservation"
+          disabled={!isFormValid}
+        >
           Make Your reservation
         </button>
       </form>
