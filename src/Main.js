@@ -35,6 +35,10 @@ function Main() {
 
     const submitForm = async (formData) => {
         submitAPI(formData);
+
+        // Save booking data to local storage
+        localStorage.setItem('bookingData', JSON.stringify(formData));
+
         navigate("/confirmed");
     };
 
